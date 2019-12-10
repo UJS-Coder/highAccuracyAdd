@@ -1,35 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
+//æ„Ÿè°¢xdåŒå­¦çš„ä¿®æ”¹
 int main()
 {
-    int a[1000],b[1000], ia = 0, ib = 0,flag = 0;
-    char ch;//ÓÃÓÚÒ»´Î¶ÁÈ¡Ò»¸ö×Ö·û
-    //ÊäÈë£¬¿ÉÒÔÓÃº¯Êı¼ò»¯
-    while(cin.get(ch)&&ch!=' '&&ch!='\n')
-    {
-        a[ia]=ch-'0';
-        ia++;
-    }
-    while(cin.get(ch)&&ch!=' '&&ch!='\n')
-    {
-        b[ib]=ch-'0';
-        ib++;
-    }
-    {
-        //¼Ó·¨
-        int t = min(ia,ib);//¶ÁÈ¡×îĞ¡Î»Êı
-        for(int i = 0; i < t; i++)
-        {
-            a[ia-i-1]+=flag;//½øÎ»´¦Àí
-            a[ia-i-1]=a[ia-i-1]+b[ib-i-1];
-            if(a[ia-i-1]>=10)
-            {
-                flag=a[ia-i-1]/10;
-                a[ia-i-1]%=10;
-            }
-        }
-    }
-    for(int t = 0; t < ia; t++)
-        cout << a[t];//Êä³ö
-}
+	string a,b,c;
+	int sa = 0,sb = 0,sc = 0;
+	cin>>a>>b;
+	sa=a.length(),sb=b.length();
+	int m=min(sa,sb);//æœ€å°ä½æ•°
+	int n=max(sa,sb);//æœ€å¤§ä½æ•°ï¼Œç”¨äºæœ€å°ä½æ•°ç›¸åŠ åè¡¥ä½
+	for(int i=0;i<sa;i++) a[i]=a[i]-'0';
+	for(int i=0;i<sa;i++) b[i]=b[i]-'0';//å­—ç¬¦è½¬æ•°å­—
+	int flag=0;//è¿›ä½æ ‡è¯†
+	for(int i=0;i<m;i++)
+	{
+		c[n-i]=a[sa-i-1]+b[sb-i-1]+flag;//è¿›ä½åŠ æ³•
+		if(c[i]>=10)
+		{
+			c[n-i]=c[n-i]%10;
+			flag=1;//è¿›ä½å¤„ç†
+		}
+		else flag=0;
+		printf("%d\n",c[n-i]);//è¾“å‡ºæœ«ä½
 
+	}
+	for(int i=n-m;i<n;i++)//è½æ²¡æœ‰è¢«å¤„ç†çš„ä½
+	{
+		c[n-i]=c[n-i]+flag;
+		if(c[n-i]>=10)
+		{
+			c[n-i]=c[n-i]%10;
+			flag=1;
+		}
+		else flag=0;//æ€è·¯å’Œä¸Šæ–¹ä¸€è‡´
+	}
+	for(int i=1;i<=n;i++) printf("%d",c[i]);//è¾“å‡º
+
+
+ }
